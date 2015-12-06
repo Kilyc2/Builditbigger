@@ -1,6 +1,9 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.kilyc2.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -10,6 +13,14 @@ import java.io.IOException;
 
 public class JokesAsyncTask extends AsyncTask<Void, Void, String> {
     private MyApi myApiService = null;
+    private MainActivity activity;
+
+    public JokesAsyncTask() {
+    }
+
+    public JokesAsyncTask(MainActivity activity) {
+        this.activity = activity;
+    }
 
     @Override
     protected String doInBackground(Void... params) {
@@ -27,4 +38,20 @@ public class JokesAsyncTask extends AsyncTask<Void, Void, String> {
         }
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        if (this.activity != null) {
+            this.activity.setSpinnerVisible();
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String joke) {
+        super.onPostExecute(joke);
+        if (this.activity != null) {
+            this.activity.setSpinnerInvisible();
+            this.activity.sendJoke(joke);
+        }
+    }
 }
