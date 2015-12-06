@@ -1,8 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.Application;
 import android.test.AndroidTestCase;
-import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import java.util.concurrent.TimeUnit;

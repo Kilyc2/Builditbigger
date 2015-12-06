@@ -1,9 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.example.kilyc2.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
