@@ -42,3 +42,39 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
 }
+
+task runAppEngine(dependsOn: ":backend:appengineRun") {
+    evaluationDependsOn ":backend"
+
+    project(":backend") {
+        appengine {
+            daemon true
+        }
+    }
+
+    doLast {
+        println "AppEngine is running"
+    }
+}
+
+task runsAllTest(dependsOn: ":app:connectedCheck") {
+    mustRunAfter "runAppEngine"
+
+    doLast {
+        println "All Test finish"
+    }
+
+}
+
+task shutsAppEngineDown(dependsOn: ":backend:appengineStop") {
+    mustRunAfter "runAppEngine"
+    shouldRunAfter "runsAllTest"
+
+    doLast {
+        println "AppEngine is stoped"
+    }
+}
+
+task doTests {
+    dependsOn = ["runAppEngine", "runsAllTest", "shutsAppEngineDown"]
+}

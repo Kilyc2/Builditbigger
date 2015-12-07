@@ -1,7 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.MediumTest;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +9,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationTest extends AndroidTestCase {
 
-    @MediumTest
     public void testJokeIsNonEmptyString() {
         try {
             JokesAsyncTask jokeTask = new JokesAsyncTask();
